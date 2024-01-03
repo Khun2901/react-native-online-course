@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import LittleLemonHeader from './components/LittleLemonHeader'
 import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
+import MenuList from './components/MenuList';
 
 export default function App() {
   return (
@@ -12,7 +13,10 @@ export default function App() {
       </View>
 
       <View style={{flex: 0.85}}>
-        <WelcomeScreen />
+        {/* <WelcomeScreen /> */}
+        <MenuList />
+      </View>
+      <View>
         <LittleLemonFooter />
       </View>
     </>
