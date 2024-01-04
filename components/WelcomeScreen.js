@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         color: 'white', 
         textAlign: 'center', 
         margin: 20, 
-        marginBottom: 40
+        marginBottom: 20
     },
     textInput: {
         backgroundColor: '#EDEFEE',
@@ -30,13 +30,15 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 2,
         borderRadius: 3,
+        fontWeight: '500',
+        fontSize: 20,
     }
 })
 
 export default function WelcomeScreen() {
 
-    const [firstName, onChangeFirstName] = React.useState('')
-    const [lastName, onChangeLastName] = React.useState('')
+    const [email, onChangeEmail] = React.useState('')
+    const [password, onChangePassword] = React.useState('')
 
     return (
         <KeyboardAvoidingView
@@ -51,20 +53,27 @@ export default function WelcomeScreen() {
                 <Text style={styles.headerText}>
                     Welcome to {'\n'}<Text style={{fontWeight: 700}}>Little Lemon</Text>
                 </Text>
-                <Text style={styles.innerText}>Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
-                </Text>
-                <TextInput 
+                {/* <Text style={styles.innerText}>Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
+                </Text> */}
+                <Text style={styles.innerText}>Please Login to continue.</Text>
+                <TextInput
                     style={styles.textInput}
-                    value={firstName}
-                    onChangeText={onChangeFirstName}
-                    placeholder={'First Name'}
+                    value={email}
+                    onChangeText={onChangeEmail}
+                    placeholder={'Email'}
+                    keyboardType= 'email-address'
+                    clearButtonMode= 'always'
+                    onFocus={() => Alert.alert('The email is now on focus.')}
                 />
                 <TextInput 
                     style={styles.textInput}
-                    value={lastName}
-                    onChangeText={onChangeLastName}
-                    placeholder={'Last Name'}
+                    value={password}
+                    onChangeText={onChangePassword}
+                    placeholder={'Password'}
+                    secureTextEntry={true}
                 />
+                {/* <Text style={styles.innerText}>Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
+                </Text> */}
             </ScrollView>
         </KeyboardAvoidingView>
     )
