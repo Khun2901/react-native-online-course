@@ -14,9 +14,9 @@ export default function App() {
       </View>
 
       <View style={{flex: 0.85}}>
-        {/* <WelcomeScreen /> */}
+        <WelcomeScreen />
         {/* <MenuList /> */}
-        <SectionMenuList />
+        {/* <SectionMenuList /> */}
       </View>
       <View>
         <LittleLemonFooter />
