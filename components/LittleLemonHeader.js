@@ -4,7 +4,11 @@ import { StyleSheet, Text, View } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EE9972'
+    backgroundColor: '#EE9972',
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
   }, 
   headerText: {
     paddingTop: 65,

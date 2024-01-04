@@ -4,17 +4,19 @@ import LittleLemonHeader from './components/LittleLemonHeader'
 import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
 import MenuList from './components/MenuList';
+import SectionMenuList from './components/SectionMenuList';
 
 export default function App() {
   return (
     <>
-      <View style={{flex: 0.15}}>
+      <View style={{flex: 0.15, zIndex: 40}}>
         <LittleLemonHeader />
       </View>
 
       <View style={{flex: 0.85}}>
         {/* <WelcomeScreen /> */}
-        <MenuList />
+        {/* <MenuList /> */}
+        <SectionMenuList />
       </View>
       <View>
         <LittleLemonFooter />
