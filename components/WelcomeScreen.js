@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
@@ -32,13 +32,28 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         fontWeight: '500',
         fontSize: 20,
+    },
+    buttonContainer: {
+        backgroundColor: '#EE9972',
+        alignContent: 'center',
+        alignItems: 'center',
+        marginVertical: 20,
+        marginHorizontal: 100,
+        paddingVertical: 12,
+        borderRadius: 40
+    },
+    buttonText: {
+        fontSize: 25,
+        fontWeight: '500'
     }
+
 })
 
 export default function WelcomeScreen() {
 
     const [email, onChangeEmail] = React.useState('')
     const [password, onChangePassword] = React.useState('')
+    const [loggedIn, onChangeLoggedIn] = React.useState(false)
 
     return (
         <KeyboardAvoidingView
@@ -55,25 +70,41 @@ export default function WelcomeScreen() {
                 </Text>
                 {/* <Text style={styles.innerText}>Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
                 </Text> */}
-                <Text style={styles.innerText}>Please Login to continue.</Text>
-                <TextInput
-                    style={styles.textInput}
-                    value={email}
-                    onChangeText={onChangeEmail}
-                    placeholder={'Email'}
-                    keyboardType= 'email-address'
-                    clearButtonMode= 'always'
-                    onFocus={() => Alert.alert('The email is now on focus.')}
-                />
-                <TextInput 
-                    style={styles.textInput}
-                    value={password}
-                    onChangeText={onChangePassword}
-                    placeholder={'Password'}
-                    secureTextEntry={true}
-                />
-                {/* <Text style={styles.innerText}>Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
-                </Text> */}
+                {
+                    loggedIn ? 
+                    <>
+                        <Text style={styles.innerText}>
+                            You're now logged in.
+                        </Text>
+                    </> :
+                    <>
+                        <Text style={styles.innerText}>Please Login to continue.</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            value={email}
+                            onChangeText={onChangeEmail}
+                            placeholder={'Email'}
+                            keyboardType= 'email-address'
+                            clearButtonMode= 'always'
+                            // onFocus={() => Alert.alert('The email is now on focus.')}
+                        />
+                        <TextInput 
+                            style={styles.textInput}
+                            value={password}
+                            onChangeText={onChangePassword}
+                            placeholder={'Password'}
+                            secureTextEntry={true}
+                            // onBlur={() => Alert.alert('The pasword is now blurred.')}
+                        />
+                    </>
+                }
+                <Pressable style={styles.buttonContainer}
+                    onPressOut={() => {onChangeLoggedIn(!loggedIn)}}>
+                    <Text style={styles.buttonText}>
+                        {loggedIn ? 'Log Out' : 'Log In'}
+                    </Text>
+                </Pressable>
+                
             </ScrollView>
         </KeyboardAvoidingView>
     )
