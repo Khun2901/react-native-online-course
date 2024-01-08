@@ -1,10 +1,22 @@
 import * as React from 'react'
-import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View, Image, useColorScheme} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#333333',
+    },
+    logo: {
+        resizeMode: 'contain',
+        width: 90,
+        height: 90
+    },
+    bannerContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginHorizontal: 60,
+        marginVertical: 20
     },
     headerText: {
         fontSize: 30,
@@ -54,10 +66,15 @@ export default function WelcomeScreen() {
     const [email, onChangeEmail] = React.useState('')
     const [password, onChangePassword] = React.useState('')
     const [loggedIn, onChangeLoggedIn] = React.useState(false)
+    const colorScheme = useColorScheme()
 
     return (
         <KeyboardAvoidingView
-            style={styles.container}
+            style={[styles.container, 
+                colorScheme === 'light' 
+                ? {backgroundColor: '#E3E3E3'} 
+                : {backgroundColor: '#333333'}
+            ]}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             >
             <ScrollView 
@@ -65,11 +82,15 @@ export default function WelcomeScreen() {
                 indicatorStyle={'white'} //the indicatorStyle can be 'white', 'black', or 'default'
                 keyboardDismissMode='on-drag'
                 >
-                <Text style={styles.headerText}>
-                    Welcome to {'\n'}<Text style={{fontWeight: 700}}>Little Lemon</Text>
-                </Text>
-                {/* <Text style={styles.innerText}>Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
-                </Text> */}
+                <View style={styles.bannerContainer}>
+                    <Image
+                        source={require('../img/LittleLemonLogo.png')}
+                        style={styles.logo}/>
+                    <Text style={styles.headerText}>
+                        Little Lemon
+                    </Text>
+                </View>
+                
                 {
                     loggedIn ? 
                     <>
@@ -78,7 +99,7 @@ export default function WelcomeScreen() {
                         </Text>
                     </> :
                     <>
-                        <Text style={styles.innerText}>Please Login to continue.</Text>
+                        <Text style={styles.innerText}>Color Scheme: {colorScheme}</Text>
                         <TextInput
                             style={styles.textInput}
                             value={email}
@@ -104,6 +125,7 @@ export default function WelcomeScreen() {
                         {loggedIn ? 'Log Out' : 'Log In'}
                     </Text>
                 </Pressable>
+    
                 
             </ScrollView>
         </KeyboardAvoidingView>

@@ -5,6 +5,8 @@ import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
 import MenuList from './components/MenuList';
 import SectionMenuList from './components/SectionMenuList';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
