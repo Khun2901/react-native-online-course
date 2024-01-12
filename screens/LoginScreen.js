@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 
 })
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
 
     const [email, onChangeEmail] = React.useState('')
     const [password, onChangePassword] = React.useState('')
@@ -90,8 +90,29 @@ export default function WelcomeScreen() {
                         Little Lemon
                     </Text>
                 </View>
+
+                <>
+                    <Text style={styles.innerText}>Color Scheme: {colorScheme}</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={email}
+                        onChangeText={onChangeEmail}
+                        placeholder={'Email'}
+                        keyboardType= 'email-address'
+                        clearButtonMode= 'always'
+                        // onFocus={() => Alert.alert('The email is now on focus.')}
+                    />
+                    <TextInput 
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={onChangePassword}
+                        placeholder={'Password'}
+                        secureTextEntry={true}
+                        // onBlur={() => Alert.alert('The pasword is now blurred.')}
+                    />
+                </>
                 
-                {
+                {/* {
                     loggedIn ? 
                     <>
                         <Text style={styles.innerText}>
@@ -118,11 +139,17 @@ export default function WelcomeScreen() {
                             // onBlur={() => Alert.alert('The pasword is now blurred.')}
                         />
                     </>
-                }
-                <Pressable style={styles.buttonContainer}
+                } */}
+                {/* <Pressable style={styles.buttonContainer}
                     onPressOut={() => {onChangeLoggedIn(!loggedIn)}}>
                     <Text style={styles.buttonText}>
                         {loggedIn ? 'Log Out' : 'Log In'}
+                    </Text>
+                </Pressable> */}
+                <Pressable style={styles.buttonContainer}
+                    onPress={() => {navigation.navigate('Welcome')}}>
+                    <Text style={styles.buttonText}>
+                        Login
                     </Text>
                 </Pressable>
     
